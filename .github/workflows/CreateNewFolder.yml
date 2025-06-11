@@ -1,0 +1,125 @@
+name: Create New Manuscript Folder Structure
+
+on:
+  workflow_dispatch:
+    inputs:
+      publication_year:
+        description: 'Enter 4-digit year of publication'
+        required: true
+      first_author_last_name:
+        description: 'Enter last name of first author'
+        required: true
+      journal_name:
+        description: 'Enter the journal name'
+        required: true
+      manuscript_title:
+        description: 'Enter the manuscript title'
+        required: true
+      full_citation:
+        description: 'Enter the full citation, if available'
+        required: false
+      doi_link:
+        description: 'Enter the DOI link, if available'
+        required: false
+
+jobs:
+  create-folder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create new manuscript folder structure
+        id: create
+        run: |
+          # Capture inputs
+          YEAR="${{ github.event.inputs.publication_year }}"
+          AUTHOR="${{ github.event.inputs.first_author_last_name }}"
+          JOURNAL="${{ github.event.inputs.journal_name }}"
+          MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
+          CITATION="${{ github.event.inputs.full_citation }}"
+          DOILINK="${{ github.event.inputs.doi_link }}"
+
+          # Check if the template README file exists
+          if [ ! -f "Template/README.md" ]; then
+            echo "Template/README.md does not exist. Please add the template file and try again."
+            exit 1
+          fi
+          
+          # Function to trim leading and trailing whitespace
+          trim() {
+            echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+          }
+          
+          # Function to sanitize strings: trim, convert to lowercase, and replace non-alphanumeric characters with underscores
+          sanitize() {
+            local trimmed
+            trimmed=$(trim "$1")
+            echo "$trimmed" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g'
+          }
+          
+          # Sanitize inputs
+          S_YEAR=$(sanitize "$YEAR")
+          S_AUTHOR=$(sanitize "$AUTHOR")
+          S_JOURNAL=$(sanitize "$JOURNAL")
+          
+          # For the manuscript title: trim, then truncate to first 50 characters, then sanitize.
+          TRIMMED_MANUSCRIPT=$(trim "$MANUSCRIPT")
+          TRUNC_MANUSCRIPT="${TRIMMED_MANUSCRIPT:0:50}"
+          S_MANUSCRIPT=$(sanitize "$TRUNC_MANUSCRIPT")
+                    
+          # Create folder name based on concatenation (delimited by underscores)          
+          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"                  
+          
+          # Create the folder structure and add placeholder files
+          echo "Creating folder: $FOLDER_NAME"
+          mkdir -p "$FOLDER_NAME/code" "$FOLDER_NAME/data"
+          touch "$FOLDER_NAME/code/.gitkeep"
+          touch "$FOLDER_NAME/data/.gitkeep"
+
+          # Copy the template README from Template/README.md to the new manuscript folder
+          cp Template/README.md "$FOLDER_NAME/README.md"
+
+          # Prepend user input information to the README.md file
+          {
+            echo "ABOUT THIS PUBLICATION"
+            echo ""
+            echo "Year: $S_YEAR"
+            echo ""
+            echo "Author: $S_AUTHOR"
+            echo ""
+            echo "Title: $MANUSCRIPT"
+            echo ""
+            echo "Journal: $S_JOURNAL"
+            echo ""
+            echo "Citation: $CITATION"
+            echo ""
+            echo "DOI link: $DOILINK"
+            echo ""          
+            cat "$FOLDER_NAME/README.md"
+          } > "$FOLDER_NAME/README.tmp" && mv "$FOLDER_NAME/README.tmp" "$FOLDER_NAME/README.md"
+          
+          
+          # Configure Git (required for committing changes)
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Stage and commit changes
+          git add "$FOLDER_NAME"
+          git commit -m "Add folder structure for manuscript: $FOLDER_NAME"
+          git push
+
+          # Export folder name and URL
+          echo "folder_name=$FOLDER_NAME" >> "$GITHUB_OUTPUT"
+          echo "folder_path=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_REF_NAME}/${FOLDER_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Show folder link in logs
+        run: |
+          echo "✅ Folder created: ${{ steps.create.outputs.folder_path }}"
+
+      - name: Add folder link to summary
+        run: |
+          echo "### 📂 Manuscript Folder Created" >> $GITHUB_STEP_SUMMARY
+          echo "- **Folder name:** \`${{ steps.create.outputs.folder_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Browse it here:** [Open Folder](${{ steps.create.outputs.folder_path }})" >> $GITHUB_STEP_SUMMARY
