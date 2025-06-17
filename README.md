@@ -18,3 +18,5 @@ GUIDE TO REPO ACTIONS: This repository is designed to simplify contributions by 
 * Datasets should not contain any geographic or location data. Even if information about participant addresses was utilized in analyses, these data must be withheld. 
 
 **If you have any questions about how to structure your data and/or what to include/exclude from your dataset, please discuss with DAP Data Manager Mandy Kauffman at mekauffm@uw.edu.**
+
+**If you are authorized to run the workflow, see instructions at [GitHub Repository for Publication Resources SOP - Google Docs](https://docs.google.com/document/d/1zfdH24eHYhm51rRilNOfCvRbQYVG-VODngao1RCkxg0/edit?tab=t.0)**
