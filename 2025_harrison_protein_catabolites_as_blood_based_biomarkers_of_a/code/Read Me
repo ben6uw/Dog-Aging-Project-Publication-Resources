@@ -1,0 +1,143 @@
+These R files will perform the analysis of the dog plamsa metabolome in the DAP Precision Cohort:
+______________.
+
+##############################################################################
+quality control normalization imputation.R # examines LCMS run properties, noramlizes the peak data, assesses missingenss and imputes
+#######################################
+using data files: 
+'merged.data' # this study
+
+generates data files used elsewhere:
+'normalizedData'
+##############################################################################
+
+
+##############################################################################
+removingTechnicalCovariates.R # adjusts normalized LC-MS peak area data for hemolysis, sample travel time, arrival temperature and other preLC-MS effects  
+#######################################
+using data files: 
+'normalizedData' # this study
+
+generates data files used elsewhere:
+'technicalCovarsRemovedData'
+##############################################################################
+
+
+##############################################################################
+CBCVariableSelection.R # merges CBC and serum chemistry for Precision dogs from 2024 data release 
+#######################################
+using data files: 
+'technicalCovarsRemovedData' # this study
+'P1sampleinfo.csv' # this study
+'DAP_2024_SamplesResults_CBC_v1.0.csv' # from TERRA
+'DAP_2024_SamplesResults_ChemistryPanel_v1.0.csv' # from TERRA
+
+generates data files used elsewhere:
+'blood.covariates.RData'
+##############################################################################
+
+
+##############################################################################
+age_mixed_model_CBCcovars.R # adjusts normalized LC-MS peak area data for hemolysis, sample travel time, arrival temperature and other preLC-MS effects  
+#######################################
+using data files: 
+'blood.covariates.RData'
+'P1.metabolome.withBreedData.2'
+'grm_Mar_2024.RData'
+'Raftery_targeted_metabolites_information.csv'
+
+generates data files used elsewhere:
+'scaled.data_for_CBC_mixedModel'
+'CBC_CELLcovars_mixed_model_results'
+'TableS1.txt'
+'mmResiduals'
+##############################################################################
+
+
+##############################################################################
+signalment.R # cohort summary statistics, PCA-ANCOVA PC-heritability
+#######################################
+using data files: 
+'technicalCovarsRemovedData' # this study
+'P1sampleinfo.csv' # this study
+'p1_update_March2024_with_Genetic_Breeds.RData' # this study
+'blood.covariates.RData' # this study
+'scaled.data_for_CBC_mixedModel' # this study
+'DAP_2024_DogOverview_v1.0.RData' # from TERRA
+'DAP_2024_SamplesResults_Metadata_v1.0.csv' # from TERRA
+# as well as other internally generated files
+
+generates data files used elsewhere:
+'P1.metabolome.withBreedData.2'
+'PCANOVA_result'
+##############################################################################
+
+
+##############################################################################
+term reduction by GRM.R # examines the effect of common breed(s) and of the genetic relatedness matrix (GRM) on the covariates
+#######################################
+using data files: 
+'P1.metabolome.withBreedData.2' # this study
+'PCANOVA_result'  # this study
+'scaled.data_for_CBC_mixedModel'  # this study
+
+generates data files used elsewhere:
+none
+##############################################################################
+
+##############################################################################
+ptmAA vs AAs.R # comparison of ptmAAs and AAs, included designation of 'ambiguous' AA class
+#######################################
+using data files: 
+'CBC_CELLcovars_mixed_model_results' # this study
+'mmResiduals' # this study
+'blood.covariates.RData' # this study
+
+generates data files used elsewhere:
+'modAAs.csv'
+##############################################################################
+
+
+##############################################################################
+diet variables.R # investigate association between metabolites and primary diet components
+#######################################
+using data files: 
+'P1.technicalCovarsRemovedData' # this study
+'scaled.data_for_CBC_mixedModel' # this study
+'DAP_2024_CODEBOOK_v1.0.csv' # from TERRA
+'DAP_2024_HLES_dog_owner_v1.0.RData' # from TERRA
+
+generates data files used elsewhere:
+'diet_mixed_model_results'
+'kibblersOnlyMixedModelResults'
+##############################################################################
+
+##############################################################################
+urineVariableSelectionandAnalysis.R # investigate association between metabolites and urinalysis data
+#######################################
+using data files: 
+'scaled.data_for_CBC_mixedModel' # this study
+'DAP_2024_SamplesResults_Urine_v1.0.csv' # from TERRA
+
+generates data files used elsewhere:
+'UrineMixedModelData'
+'UrineMixedModelResults'
+##############################################################################
+
+
+##############################################################################
+mediation analysis.R # performs mediation analysis, using creatinine, BUN or uSG to test each for mediation of the age-association of ptmAAs
+#######################################
+using data files: 
+'scaled.data_for_CBC_mixedModel' # this study
+'modAAs.csv' # this study
+'UrineMixedModelData' # this study
+'UrineMixedModelResults' # this study
+
+generates data files used elsewhere:
+none
+##############################################################################
+
+
+
+
