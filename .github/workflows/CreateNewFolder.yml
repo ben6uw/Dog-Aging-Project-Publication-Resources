@@ -9,18 +9,18 @@ on:
       first_author_last_name:
         description: 'Enter last name of first author'
         required: true
-      journal_name:
-        description: 'Enter the journal name'
-        required: true
       manuscript_title:
         description: 'Enter the manuscript title'
         required: true
+      journal_name:
+        description: 'Enter the journal name'
+        required: false
       full_citation:
         description: 'Enter the full citation, if available'
         required: false
       doi_link:
         description: 'Enter the DOI link, if available'
-        required: false
+        required: false        
 
 jobs:
   create-folder:
@@ -70,7 +70,7 @@ jobs:
           S_MANUSCRIPT=$(sanitize "$TRUNC_MANUSCRIPT")
                     
           # Create folder name based on concatenation (delimited by underscores)          
-          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"                  
+          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_MANUSCRIPT}"                  
           
           # Create the folder structure and add placeholder files
           echo "Creating folder: $FOLDER_NAME"
