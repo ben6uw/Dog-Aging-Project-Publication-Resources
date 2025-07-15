@@ -17,5 +17,20 @@ mergeWithMetaData.R Merge with sample and dog metadata and further adjust for te
   Generates data files:
     Precision_fastingAdjustedData
 
+Mar2025.BCS_VERMdata.R harmonize BCS and weight from VEMRs
+  uses data:
+    PrecisionProximateAFUSVEMRExtraction_20240814.csv [Terra]
+
+  generates data files:
+    verm2024_BCS_harmonization 
+
+Longitudonal Data Formatting
+longitudinalFormat.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
+  uses data: 
+    Precision_fastingAdjustedData [internal]
+    verm2024_BCS_harmonization
 
 
+  Generates data files:
+   
+Precision_techAdjustedData
