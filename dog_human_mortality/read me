@@ -1,1 +1,9 @@
+This repository contains R code and some of the data needed to complete the analysis of [citation].
 
+1. Metabolome Data
+Normalize and adjust aqueous metabolome of dog plasma samples
+
+2. Mortality analysis
+Model all-cause mortality as a function of plasma metaboplites along with covariates
+
+3. Correlation between human mortality associations and dog mortality associations in the plasma metabolome
