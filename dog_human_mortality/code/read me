@@ -18,7 +18,7 @@
     Precision_fastingAdjustedData
 
 
-## DAP owner survey data  
+##DAP owner survey data  
 #merging HLES and AFUS.R Loads and merges survey data from health and life experience survey (HLES) and annula follow up survey (AFUS)
   used data:
     DAP_2024_DogOverview_v1.0.RData [Terra]
@@ -33,7 +33,8 @@
 #longitudinalFormatting.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
   uses data: 
     Precision_fastingAdjustedData [internal]
-    mergedAFUSandHLESdata [internal; see 
+    mergedAFUSandHLESdata [internal]
+    DogAgingProject_GeneticData_CuratedRelease_2023.tsv [Terra]
 
 
   Generates data files:
