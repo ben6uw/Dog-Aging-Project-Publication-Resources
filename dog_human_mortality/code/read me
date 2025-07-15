@@ -1,13 +1,13 @@
-##Analysis Flow 
+###Analysis Flow 
 
-Metablome Data
-NormalizationAndImputation.R Normalize LCMS data and adjust for technical effects, impute missing data
+##Metablome Data
+#NormalizationAndImputation.R Normalize LCMS data and adjust for technical effects, impute missing data
   uses data file: "joinedRawData" [Terra]
   
   Generates data files (ignoring internal saves):
     ENimputedData
 
-mergeWithMetaData.R Merge with sample and dog metadata and further adjust for technical effects (hemolysis, lipemia, etc.)
+#mergeWithMetaData.R Merge with sample and dog metadata and further adjust for technical effects (hemolysis, lipemia, etc.)
   uses data: 
     SampledDogCohortKey_20250129.csv [Terra]
     DogOverview_20250129.csv [Terra]
@@ -17,15 +17,16 @@ mergeWithMetaData.R Merge with sample and dog metadata and further adjust for te
   Generates data files:
     Precision_fastingAdjustedData
 
-Mar2025.BCS_VERMdata.R harmonize BCS and weight from VEMRs
+#Mar2025.BCS_VERMdata.R harmonize BCS and weight from VEMRs
   uses data:
     PrecisionProximateAFUSVEMRExtraction_20240814.csv [Terra]
 
   generates data files:
     verm2024_BCS_harmonization 
 
-Longitudonal Data Formatting
-longitudinalFormat.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
+
+##Longitudonal Data Formatting
+#longitudinalFormat.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
   uses data: 
     Precision_fastingAdjustedData [internal]
     verm2024_BCS_harmonization
