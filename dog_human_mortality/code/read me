@@ -85,3 +85,11 @@
     Yu et al., 2016 PMID 26956554 Table S1 .xlsx [Data folder, from PMID:26956554]   
     Sebastiani_2024 Supp table 1.xlsx [Data folder, from PMID: 39504246]
 
+  Generates data files:
+    compiled human HRs
+
+#long form comp.R  analyzes dog and human data after conversion to long form 
+  uses data: 
+    dogCoxHR.Q
+    compiled human HRs
+
