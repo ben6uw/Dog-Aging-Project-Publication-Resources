@@ -27,7 +27,6 @@
     normalizedCBC.Chem.data
 
 
-
 ##DAP owner survey data  
 #merging HLES and AFUS.R Loads and merges survey data from health and life experience survey (HLES) and annula follow up survey (AFUS)
   uses data:
@@ -63,10 +62,25 @@
     GRMcoxPHresult
     numCBCchemUAGRMcoxPHresult
 
-# cox unpacking the results.R script to compile results of cox models with FDR correction
+#cox unpacking the results.R script to compile results of cox models with FDR correction
   uses data: 
     longitudinalData4
     GRMcoxPHresult
 
   Generates data files:
     dogCoxHR.Q
+
+
+##Human metabolome mortality summary statistics
+
+#human all comp.R loads stats from human studies, identifies common metabolites and merges the data
+  uses data: 
+    dogCoxHR.Q
+    Wang_2023 supplemental.xlsx [Data folder, from PMID:37717037]
+    Ottosson_2020_PMID_32751974 Supplementary_Table_S1_S4.xlsx [Data folder, from PMID:32751974]
+    Deelen et al., 2019 PMID 31431621 Table S1.xlsx [Data folder, from PMID:31431621]
+    Cheng 2015 PMID 25864806 Table  3 allcause mort2.xlsx [Data folder, from PMID:25864806]
+    Balasubramanian_2020_Table S1.xlsx [Data folder, from PMID:31651959]
+    Fern_Duval 2025 Tables.xlsx [Data folder, from PMID:40107652]
+    
+
