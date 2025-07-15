@@ -17,19 +17,23 @@
   Generates data files:
     Precision_fastingAdjustedData
 
-#Mar2025.BCS_VERMdata.R harmonize BCS and weight from VEMRs
-  uses data:
-    PrecisionProximateAFUSVEMRExtraction_20240814.csv [Terra]
 
-  generates data files:
-    verm2024_BCS_harmonization 
+## DAP owner survey data  
+#merging HLES and AFUS.R Loads and merges survey data from health and life experience survey (HLES) and annula follow up survey (AFUS)
+  used data:
+    DAP_2024_DogOverview_v1.0.RData [Terra]
+    DAP_2024_HLES_dog_owner_v1.0.RData [Terra]
+    DAP_2024_AFUS_dog_owner_v1.0.RData [Terra]
+
+  Generates data files: 
+    mergedAFUSandHLESdata
 
 
 ##Longitudonal Data Formatting
-#longitudinalFormat.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
+#longitudinalFormatting.R merge metabolome, DAP survey data, and CBC/chem/ua/flow data 
   uses data: 
     Precision_fastingAdjustedData [internal]
-    verm2024_BCS_harmonization
+    mergedAFUSandHLESdata [internal; see 
 
 
   Generates data files:
