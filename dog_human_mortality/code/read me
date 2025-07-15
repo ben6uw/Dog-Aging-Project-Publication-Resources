@@ -1,27 +1,21 @@
 Analysis Flow 
 
 Metablome Data
-Normalize LCMS data and adjust for technical effects, impute missing data
-  uses R file: NormalizationAndImputation.R
+NormalizationAndImputation.R Normalize LCMS data and adjust for technical effects, impute missing data
   uses data file: "joinedRawData" [Terra]
   
-  Generates data files:
-    joinedNormDataMissRemoved
-    joinedNormDataMissRemovedBatchOrderAdjusted
+  Generates data files (ignoring internal saves):
     ENimputedData
 
-Merge with sample and dog metadata and further adjust for technical effects (hemolysis, lipemia, etc.)
-  Uses:
-    R file: mergeWithMetaData.R
-    data: SampledDogCohortKey_20250129.csv [Terra]
-       DogOverview_20250129.csv [Terra]
-        SamplesResults_Metadata_20250129.csv [Terra]
+mergeWithMetaData.R Merge with sample and dog metadata and further adjust for technical effects (hemolysis, lipemia, etc.)
+  uses data: 
+    SampledDogCohortKey_20250129.csv [Terra]
+    DogOverview_20250129.csv [Terra]
+    SamplesResults_Metadata_20250129.csv [Terra]
+    DogAgingProject_GeneticData_CuratedRelease_2023.ancestry.tsv [Terra]
   
   Generates data files:
-    mzData_and_metadata
-    mzData_and_metadata2
-    DogAgingProject_GeneticData_CuratedRelease_2023.ancestry.tsv
-    Precision_techAdjustedData
+    Precision_fastingAdjustedData
 
-Adjuse for 
+
 
