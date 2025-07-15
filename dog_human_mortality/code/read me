@@ -18,9 +18,19 @@
     Precision_fastingAdjustedData
 
 
+##CBC/chem/UA/flow data
+# normalizing CBC chem data.R assess cbc/chem/ua/flow traits for variable types, omit some, add if zero-inflated, log normalize
+  uses data
+    CBC.chem.UA.flow_Data [internal]
+
+  Generates data files: 
+    normalizedCBC.Chem.data
+
+
+
 ##DAP owner survey data  
 #merging HLES and AFUS.R Loads and merges survey data from health and life experience survey (HLES) and annula follow up survey (AFUS)
-  used data:
+  uses data:
     DAP_2024_DogOverview_v1.0.RData [Terra]
     DAP_2024_HLES_dog_owner_v1.0.RData [Terra]
     DAP_2024_AFUS_dog_owner_v1.0.RData [Terra]
@@ -38,5 +48,5 @@
 
 
   Generates data files:
-   
-Precision_techAdjustedData
+   longitudinalData2
+
