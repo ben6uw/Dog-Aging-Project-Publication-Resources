@@ -21,3 +21,6 @@ Analysis flow:
   b. Identify metabolites measures in both human and in dog plasma and harmonize the metabolite IDs/names.
   c. Merge human and dog mortality statistics by metabolite
   d. Examine correlation and concordance among human and dog mortality associations.
+
+
+A more detailed flow is described in code/read me
