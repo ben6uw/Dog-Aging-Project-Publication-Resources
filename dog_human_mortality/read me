@@ -1,9 +1,23 @@
 This repository contains R code and some of the data needed to complete the analysis of [citation].
 
-1. Metabolome Data
-Normalize and adjust aqueous metabolome of dog plasma samples
+Mortality analyis in the Precision Cohort of the Dog Aging Project (DAP)
+Users will need to obtain additional data from Terra (https://terra.bio), which requires a data use agreement.
+There are two folders: code/ and data/ that contain R code and data that are unique to this study.  
 
-2. Mortality analysis
-Model all-cause mortality as a function of plasma metaboplites along with covariates
+Analysis flow:
+1. Metabolome Data, aqueous plasma metabolome (Terra)
+  a. Normalize and merge with sample metadata
+  b. Adjust for technical effects
+  c. Merge with DAP survey data (Terra)
+  d. Convert to longitudinal format
+  e. Merge the genome relatedness matrix (GRM, Terra)
+
+2. Mortality analysis, Model all-cause mortality as a function of plasma metaboplites along with covariates
+  a. Fit Cox proportional hazards (coxPH) mixed models
+  b,
 
 3. Correlation between human mortality associations and dog mortality associations in the plasma metabolome
+  a. Load summary statistics (e.g. HR and P values) for huamn studies of mortality associations withing the plasma metabolome.
+  b. Identify metabolites measures in both human and in dog plasma and harmonize the metabolite IDs/names.
+  c. Merge human and dog mortality statistics by metabolite
+  d. Examine correlation and concordance among human and dog mortality associations.
