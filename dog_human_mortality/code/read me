@@ -63,8 +63,10 @@
     GRMcoxPHresult
     numCBCchemUAGRMcoxPHresult
 
-# cox unpacking the results.R
+# cox unpacking the results.R script to compile results of cox models with FDR correction
   uses data: 
     longitudinalData4
     GRMcoxPHresult
 
+  Generates data files:
+    dogCoxHR.Q
