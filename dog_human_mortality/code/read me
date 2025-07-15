@@ -48,5 +48,23 @@
 
 
   Generates data files:
-   longitudinalData2
+    longitudinalData2
+
+
+##Cox regression
+#genetic covariance COX.R fit time-dependent cox ph mixed models with covariates including random effect of the GRM
+  uses data:
+    longitudinalData2 [internal]
+    DogAgingProject_GeneticData_CuratedRelease_2024.rel.tsv [Terra]
+    
+  Generates data files:
+    longitudinalData3
+    longitudinalData4
+    GRMcoxPHresult
+    numCBCchemUAGRMcoxPHresult
+
+# cox unpacking the results.R
+  uses data: 
+    longitudinalData4
+    GRMcoxPHresult
 
