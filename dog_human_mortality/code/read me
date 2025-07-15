@@ -1,1 +1,15 @@
+Analysis Flow 
+
+Metablome Data
+Normalize LCMS data
+  uses R file: NormalizationAndImputation.R
+
+uses data file: 
+  "joinedRawData"
+
+Generates data files:
+  joinedNormDataMissRemoved
+  joinedNormDataMissRemovedBatchOrderAdjusted
+  ENimputedData
+
 
