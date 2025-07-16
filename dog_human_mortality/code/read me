@@ -1,5 +1,11 @@
 ###Analysis Flow 
 
+[data sources] :
+Terra = files available on https://terra.bio/ (data use agreement required)
+internal = data files made by the code below, stores in working directory
+Data folder = the data folder in this GitHub repo.
+
+
 ##Metablome Data
 #NormalizationAndImputation.R Normalize LCMS data and adjust for technical effects, impute missing data
   uses data file: "joinedRawData" [Terra]
