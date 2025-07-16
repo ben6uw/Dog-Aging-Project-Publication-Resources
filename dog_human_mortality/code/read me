@@ -64,8 +64,8 @@
 
 #cox unpacking the results.R script to compile results of cox models with FDR correction
   uses data: 
-    longitudinalData4
-    GRMcoxPHresult
+    longitudinalData4 [internal] 
+    GRMcoxPHresult [internal]
 
   Generates data files:
     dogCoxHR.Q
@@ -75,7 +75,7 @@
 
 #human all comp.R loads stats from human studies, identifies common metabolites and merges the data
   uses data: 
-    dogCoxHR.Q
+    dogCoxHR.Q [internal]
     Wang_2023 supplemental.xlsx [Data folder, from PMID:37717037]
     Ottosson_2020_PMID_32751974 Supplementary_Table_S1_S4.xlsx [Data folder, from PMID:32751974]
     Deelen et al., 2019 PMID 31431621 Table S1.xlsx [Data folder, from PMID:31431621]
@@ -90,6 +90,6 @@
 
 #long form comp.R  analyzes dog and human data after conversion to long form 
   uses data: 
-    dogCoxHR.Q
-    compiled human HRs
+    dogCoxHR.Q [internal]
+    compiled human HRs [internal]
 
