@@ -1,9 +1,9 @@
 ###Analysis Flow 
 
-[data sources] :
-Terra = files available on https://terra.bio/ (data use agreement required)
-internal = data files made by the code below, stores in working directory
-Data folder = the data folder in this GitHub repo.
+#data sources :
+[Terra] = files available on https://terra.bio/ (data use agreement required)
+[internal] = data files made by the code below, stores in working directory
+[Data folder] = the data folder in this GitHub repo.
 
 
 ##Metablome Data
@@ -25,6 +25,17 @@ Data folder = the data folder in this GitHub repo.
 
 
 ##CBC/chem/UA/flow data
+# adding CBC_chem_UA_flow to HLES and AFUS.R merge blood chemsitry with survey data 
+  uses data
+    DAP_2024_SamplesResults_Metadata_v1.0.csv [Terra]
+    DAP_2024_SamplesResults_CBC_v1.0.csv [Terra]
+    DAP_2024_SamplesResults_FlowCytometry_v1.0.csv [Terra]
+    DAP_2024_SamplesResults_Urine_v1.0.csv [Terra]
+    DAP_2024_SamplesResults_ChemistryPanel_v1.0.csv [Terra]
+
+ Generates data files: 
+    CBC.chem.UA.flow_Data
+
 # normalizing CBC chem data.R assess cbc/chem/ua/flow traits for variable types, omit some, add if zero-inflated, log normalize
   uses data
     CBC.chem.UA.flow_Data [internal]
